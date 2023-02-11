@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:15:20 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/02/09 13:11:35 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/02/11 05:03:55 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ void	free_pointer_array(char **s)
 
 void	free_everything(t_data *data)
 {
-	int	i;
-
-	i = -1;
 	free_pointer_array(data->env);
 	free_pointer_array(data->arg1);
 	free_pointer_array(data->arg2);

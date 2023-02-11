@@ -6,11 +6,11 @@
 #    By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 05:15:37 by kpawlows          #+#    #+#              #
-#    Updated: 2023/01/25 19:16:16 by kpawlows         ###   ########.fr        #
+#    Updated: 2023/02/11 05:02:26 by kpawlows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libftprintf.a
+NAME	=	libftpf.a
 CC 		=	gcc
 FLAGS	=	-Wall -Werror -Wextra
 LINK 	=	$(CC) $(FLAGS)
@@ -29,7 +29,7 @@ all: $(NAME)
 
 $(NAME): $(SRC)
 	@$(MAKE) -C ./libft
-	@cp ./libft/libft.a libftprintf.a
+	@cp ./libft/libft.a libftpf.a
 	@$(CC) $(FLAGS) -c $(SRC)
 	@$(AR) $(NAME) $(OBJ)
 	@printf "[$(NAME)]$(GREEN) \t $(NAME) created $(END)\n"

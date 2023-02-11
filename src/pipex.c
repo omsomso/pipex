@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 07:09:03 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/02/09 13:12:50 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/02/11 05:03:36 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ int	child_two(t_data *data, int *tube)
 void	pipex(t_data *data)
 {
 	int	pid;
-	int	pid_2;
 	int	child_success;
 	int	tube[2];
 
+	child_success = 0;
 	if (pipe(tube) < 0)
 	{
 		ft_putendl_fd("Error : couldn't initialize pipe", 2);

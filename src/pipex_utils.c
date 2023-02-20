@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:15:20 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/02/20 14:05:20 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/02/20 19:00:15 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	init_data(t_data *data, char **args, char *env)
 	char	**tmp2;
 
 	data->f1 = open(args[0], O_RDWR);
-	data->f2 = open(args[3], O_RDWR);
+	data->f2 = open(args[3], O_RDWR | O_CREAT);
 	if (data->f1 < 0 || data->f2 < 0)
 	{
 		ft_putendl_fd("Error : couldn't open the infile or the outfile", 2);

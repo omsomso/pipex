@@ -6,7 +6,7 @@
 #    By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 06:13:39 by kpawlows          #+#    #+#              #
-#    Updated: 2023/01/25 18:51:04 by kpawlows         ###   ########.fr        #
+#    Updated: 2023/02/20 14:06:29 by kpawlows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC 	= 	$(SRC_DIR)ft_atoi.c \
 			$(SRC_DIR)ft_strdup.c \
 			$(SRC_DIR)ft_striteri.c \
 			$(SRC_DIR)ft_strjoin.c \
+			$(SRC_DIR)ft_strjoin_free.c \
 			$(SRC_DIR)ft_strlcat.c \
 			$(SRC_DIR)ft_strlcpy.c \
 			$(SRC_DIR)ft_strlen.c \

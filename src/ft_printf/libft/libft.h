@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 02:13:23 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/01/25 17:41:06 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:00:07 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_free(char *s1, char *s2);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);

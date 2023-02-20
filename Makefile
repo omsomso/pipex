@@ -6,7 +6,7 @@
 #    By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 05:15:37 by kpawlows          #+#    #+#              #
-#    Updated: 2023/02/20 14:07:45 by kpawlows         ###   ########.fr        #
+#    Updated: 2023/02/20 19:03:19 by kpawlows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ RED=\033[0;31m
 BLUE=\033[0;34m
 END=\033[0m
 
-all: $(NAME)
+all: $(NAME) link
 
 $(NAME): $(SRC)
 	@$(MAKE) -C $(SRC_DIR)ft_printf

@@ -6,14 +6,14 @@
 #    By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 05:15:37 by kpawlows          #+#    #+#              #
-#    Updated: 2023/02/20 19:03:19 by kpawlows         ###   ########.fr        #
+#    Updated: 2023/02/21 02:20:39 by kpawlows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	pipex
 SRC_DIR	=	src/
 CC 		=	gcc
-FLAGS	=	-Werror -Wall -Wextra
+FLAGS	=	-Werror -Wall -Wextra -g3
 LIBFTPF	=	$(SRC_DIR)ft_printf/libftpf.a
 LINK 	=	$(CC) $(FLAGS)
 RM		=	rm -f

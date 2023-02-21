@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:16:01 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/02/09 13:14:43 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:44:13 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ typedef struct s_data
 	char	**env;
 	int		f1;
 	int		f2;
-} t_data;
+}	t_data;
 
 void	free_pointer_array(char **s);
 void	free_everything(t_data *data);
 char	*get_command_path(char **env, char *cmd);
-int	init_data(t_data *data, char **args, char *env);
-int	child_one(t_data *data, int *tube);
-int	child_two(t_data *data, int *tube);
+int		init_data(t_data *data, char **args);
+int		get_path(t_data *data, char **envp);
+int		child_one(t_data *data, int *tube);
+int		child_two(t_data *data, int *tube);
 void	pipex(t_data *data);
 void	print_dbg_data(t_data *data);
 

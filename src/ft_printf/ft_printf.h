@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 10:58:07 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/02/08 07:14:11 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:42:39 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-int	ft_printf(const char *argv, ...);
+int		ft_printf(const char *argv, ...);
 void	ft_putnbr_uns_fd(unsigned int n, int fd);
 int		ft_nblen(long nb);
 int		ft_puthex(unsigned long nb, unsigned long nbcpy, char *hex);

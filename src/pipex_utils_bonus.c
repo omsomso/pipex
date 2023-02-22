@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   pipex_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:15:20 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/02/21 21:06:12 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/02/22 02:50:49 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../pipex_bonus.h"
 
 void	free_pointer_array(char **s)
 {
@@ -48,6 +48,7 @@ char	*get_command_path(char **env, char *cmd)
 	while (env[i] != NULL)
 	{
 		path = ft_strjoin(env[i], cmd);
+		//	printf("cmsd = %s\n", path);
 		if (access(path, F_OK) == 0)
 		{
 			free(cmd);
@@ -80,16 +81,64 @@ int	get_path(t_data *data, char **envp)
 	data->cmd2 = NULL;
 	data->arg1 = NULL;
 	data->arg2 = NULL;
+	data->end = 0;
+	data->iter = 1;
+	data->nb_cmd = 0;
 	return (0);
 }
 
-int	init_data(t_data *data, char **args)
+int	init_data(t_data *data, char **argv)
+{
+	char	**tmp1;
+	char	**tmp2;
+	char	*cmd;
+	char	**cmd_args;
+	int		i;
+
+	i = 0;
+	data->f1 = open(argv[0], O_RDONLY);
+	//data->f2 = open(argv[3], O_RDWR);
+	/*if (data->f1 < 0 || data->f2 < 0)
+	{
+		ft_putendl_fd("Error : couldn't open the infile or outfile", 2);
+		return (1);
+	}*/
+	while (argv[++i] != NULL)
+		data->nb_cmd++;
+	i = 0;
+	while (argv[++i + 1] != NULL)
+	{
+		if (pipe(data->tube) < 0)
+		{
+			ft_putendl_fd("Error : couldn't initialize pipe", 2);
+			return (1);
+		}
+		if (argv[i + 1] == NULL)
+			data->end = 1;
+		tmp1 = ft_split(argv[i], ' ');
+		cmd = get_command_path(data->env, ft_strjoin("/", tmp1[0]));
+		cmd_args = tmp1++;
+		//printf("cmd = %s\n", cmd);
+		//printf("i = %d\n", i);
+		pipex(data, cmd, cmd_args);
+	}
+	//print_dbg_data(data);
+	/*
+	if (data->cmd1 == NULL || data->cmd2 == NULL)
+	{
+		ft_putendl_fd("Error : couldn't find one of the commands", 2);
+		return (1);
+	}*/
+	return (0);
+}
+
+/*int	init_data(t_data *data, char **args)
 {
 	char	**tmp1;
 	char	**tmp2;
 
 	data->f1 = open(args[0], O_RDONLY);
-	data->f2 = open(args[3], O_RDWR | O_CREAT, 0777);
+	//data->f2 = open(args[3], O_RDWR);
 	if (data->f1 < 0 || data->f2 < 0)
 	{
 		ft_putendl_fd("Error : couldn't open the infile or outfile", 2);
@@ -101,15 +150,16 @@ int	init_data(t_data *data, char **args)
 	tmp2 = ft_split(args[2], ' ');
 	data->cmd2 = get_command_path(data->env, ft_strjoin("/", tmp2[0]));
 	data->arg2 = tmp2++;
+	//print_dbg_data(data);
 	if (data->cmd1 == NULL || data->cmd2 == NULL)
 	{
 		ft_putendl_fd("Error : couldn't find one of the commands", 2);
 		return (1);
 	}
 	return (0);
-}
+}*/
 
-/*void	print_dbg_data(t_data *data)
+void	print_dbg_data(t_data *data)
 {
 	int	i;
 
@@ -126,4 +176,4 @@ int	init_data(t_data *data, char **args)
 	i = -1;
 	//while (envp[++i] != NULL)
 	//	printf("%s\n", envp[i]);
-}*/
+}

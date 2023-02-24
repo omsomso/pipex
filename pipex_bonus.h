@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:16:01 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/02/22 02:38:38 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/02/24 09:45:11 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,14 @@ typedef struct s_data
 	char	**arg1;
 	char	**arg2;
 	char	**env;
+	char	*buf;
+	int		tmp_fd;
 	int		end;
 	int		iter;
 	int		f1;
 	int		f2;
 	int		tube[2];
+	int		tube_bis[2];
 	int		nb_cmd;
 }	t_data;
 

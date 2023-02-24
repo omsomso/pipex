@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:15:20 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/02/22 02:50:49 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/02/24 10:07:33 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,13 @@ int	init_data(t_data *data, char **argv)
 	while (argv[++i] != NULL)
 		data->nb_cmd++;
 	i = 0;
-	while (argv[++i + 1] != NULL)
-	{
 		if (pipe(data->tube) < 0)
 		{
 			ft_putendl_fd("Error : couldn't initialize pipe", 2);
 			return (1);
 		}
+	while (argv[++i + 1] != NULL)
+	{
 		if (argv[i + 1] == NULL)
 			data->end = 1;
 		tmp1 = ft_split(argv[i], ' ');

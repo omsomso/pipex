@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:16:01 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/02/21 02:44:13 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/02 03:03:29 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "src/ft_printf/ft_printf.h"
+# include "src/libft/libft.h"
 
 # define PIPE_WRITE 1
 # define PIPE_READ 0

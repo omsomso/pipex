@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:16:01 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/03/01 22:11:49 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/02 04:00:36 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "src/ft_printf/ft_printf.h"
+# include "src/libft/libft.h"
 
 # define PIPE_WRITE 1
 # define PIPE_READ 0
@@ -35,8 +35,8 @@ typedef struct s_data
 	int		iter;
 	int		f1;
 	int		f2;
-	int		tube[2];
-	int		tube_bis[2];
+	int		*pipe;
+	int		pipe_bis[2];
 	int		nb_cmd;
 }	t_data;
 
@@ -45,8 +45,8 @@ void	free_everything(t_data *data);
 char	*get_command_path(char **env, char *cmd);
 int		init_data(t_data *data, char **args);
 int		get_path(t_data *data, char **envp);
-int		child_one(t_data *data, int *tube);
-int		child_two(t_data *data, int *tube);
+int		child_one(t_data *data, int *pipe);
+int		child_two(t_data *data, int *pipe);
 void	pipex(t_data *data, char *cmd, char **cmd_args);
 void	print_dbg_data(t_data *data);
 

@@ -6,7 +6,7 @@
 #    By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 05:15:37 by kpawlows          #+#    #+#              #
-#    Updated: 2023/03/01 22:11:45 by kpawlows         ###   ########.fr        #
+#    Updated: 2023/03/02 02:55:34 by kpawlows         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ NAME	=	pipex
 SRC_DIR	=	src/
 CC 		=	gcc
 FLAGS	=	#-Werror -Wall -Wextra -g3
-LIBFTPF	=	$(SRC_DIR)ft_printf/libftpf.a
-LINK 	=	$(CC) $(FLAGS)
+LIBFT	=	$(SRC_DIR)libft/libft.a
 RM		=	rm -f
 SRC 	= 	$(SRC_DIR)main.c \
 			$(SRC_DIR)pipex.c \
@@ -31,34 +30,32 @@ RED=\033[0;31m
 BLUE=\033[0;34m
 END=\033[0m
 
-all: $(NAME) link
+all: $(NAME)
 
 $(NAME): $(SRC)
-	@$(MAKE) -C $(SRC_DIR)ft_printf
+	@$(MAKE) -C $(SRC_DIR)libft
 	@$(CC) $(FLAGS) -c $(SRC)
 	@mv *.o $(SRC_DIR)
 	@printf "[$(NAME)]$(GREEN) \t $? updated $(END)\n"
+	@$(CC) $(OBJ) $(LIBFT) -o $(NAME)
+	@printf "[$(NAME)]$(GREEN) \t $(NAME) created $(END)\n"
 
 bonus: $(SRCBNS)
-	@$(MAKE) -C $(SRC_DIR)ft_printf
+	@$(MAKE) -C $(SRC_DIR)libft
 	@$(CC) $(FLAGS) -c $(SRCBNS)
 	@mv *.o $(SRC_DIR)
 	@printf "[$(NAME)]$(GREEN) \t $? updated $(END)\n"
-	@$(CC) $(OBJBNS) $(LIBFTPF) -o $(NAME)
-	@printf "[$(NAME)]$(GREEN) \t $(NAME) created $(END)\n"
-	
-link : $(NAME) $(OBJ)
-	@$(CC) $(OBJ) $(LIBFTPF) -o $(NAME)
+	@$(CC) $(OBJBNS) $(LIBFT) -o $(NAME)
 	@printf "[$(NAME)]$(GREEN) \t $(NAME) created $(END)\n"
 
 clean:
 	@$(RM) $(OBJ) $(OBJBNS)
-	@cd $(SRC_DIR)ft_printf && $(MAKE) clean
+	@cd $(SRC_DIR)libft && $(MAKE) clean
 	@printf "[$(NAME)]$(GREEN) \t .o removed $(END)\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@cd $(SRC_DIR)ft_printf && $(MAKE) fclean
+	@cd $(SRC_DIR)libft && $(MAKE) fclean
 	@printf "[$(NAME)]$(GREEN) \t $(NAME) removed $(END)\n"
 
 re: fclean all

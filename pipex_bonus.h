@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:16:01 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/03/02 04:00:36 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:59:56 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <fcntl.h>
 # include "src/libft/libft.h"
 
-# define PIPE_WRITE 1
-# define PIPE_READ 0
+# define WR_NEXT "(data->iter * 2) - 1)"
+# define RD_PREV "(data->iter -2) * 2)"
 
 typedef struct s_data
 {

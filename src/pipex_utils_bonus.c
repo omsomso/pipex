@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:15:20 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/03/02 04:47:57 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:22:40 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	get_path(t_data *data, char **envp)
 	data->arg1 = NULL;
 	data->arg2 = NULL;
 	data->end = 0;
-	data->iter = 0;
+	data->iter = 1;
 	data->nb_cmd = 0;
 	return (0);
 }
@@ -118,18 +118,18 @@ int	init_data(t_data *data, char **argv)
 	i = 0;
 	while (i < data->nb_cmd)
 	{
-		pipe(data->pipe + (i * 2));
+		if (pipe(data->pipe + (i * 2)) < 0) // init a pipe [0][1] for every command
+			return (1); //couldnt init pipe;
 		i++;
 	}
 	i = 0;
 	while (i < data->nb_cmd)
 	{
-	//	pipe(data->pipe);
-		/*if (argv[i + 1] == NULL)
-			data->end = 1;*/
+		// find the command to execve on this iter
 		tmp1 = ft_split(argv[i], ' ');
 		cmd = get_command_path(data->env, ft_strjoin("/", tmp1[0]));
 		cmd_args = tmp1++;
+
 		//printf("cmd = %s\n", cmd);
 		//printf("i = %d\n", i);
 		pipex(data, cmd, cmd_args);
@@ -142,6 +142,7 @@ int	init_data(t_data *data, char **argv)
 		ft_putendl_fd("Error : couldn't find one of the commands", 2);
 		return (1);
 	}*/
+	//printf("%s, %s \n", WR_NEXT, RD_PREV);
 	return (0);
 }
 

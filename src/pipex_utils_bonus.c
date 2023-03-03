@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:15:20 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/03/02 21:22:40 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/03 17:59:28 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	get_path(t_data *data, char **envp)
 	data->arg1 = NULL;
 	data->arg2 = NULL;
 	data->end = 0;
-	data->iter = 1;
+	data->iter = 0;
 	data->nb_cmd = 0;
 	return (0);
 }
@@ -103,23 +103,23 @@ int	init_data(t_data *data, char **argv)
 		ft_putendl_fd("Error : couldn't open the infile or outfile", 2);
 		return (1);
 	}*/
+
 	while (argv[++i + 1] != NULL)
 		data->nb_cmd++;
+	ft_printf("nb_cmd = %d\n", data->nb_cmd);
+
+	data->pipe = malloc((sizeof(int *)) * data->nb_cmd);
+
 	i = 0;
-		/*if (pipe(data->pipe) < 0)
+
+	// init a pipe [0][1] for every command
+	while (i < data->nb_cmd)
+	{
+		if (pipe(data->pipe[i]) < 0)
 		{
 			ft_putendl_fd("Error : couldn't initialize pipe", 2);
 			return (1);
 		}
-		pipe(data->pipe_bis);*/
-	ft_printf("nb_cmd = %d\n", data->nb_cmd);
-	i = 0;
-	data->pipe = malloc((sizeof(int) * 2) * data->nb_cmd);
-	i = 0;
-	while (i < data->nb_cmd)
-	{
-		if (pipe(data->pipe + (i * 2)) < 0) // init a pipe [0][1] for every command
-			return (1); //couldnt init pipe;
 		i++;
 	}
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 07:09:03 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/03/02 04:56:39 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:41:55 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,28 @@
 
 int	child_1(t_data *data, int in, char *cmd, char **cmd_args)
 {
-	dup2(in, 0); // fd becomes input
-	//close(data->pipe[1]);
+	// take input from infile on 1st iteration
+	if (data->iter == 0)
+		dup2(data->f1, 0);
+	else
+	{
+		dup2(data->pipe[data->iter][1], 0);		//in becomes read prev pipe
+		close(data->pipe[data->iter][1]);		//close read prev pipe
+	}
 
-	close(in);
-	dup2(data->pipe[in, 1); //out becomes write pipe
-	close(data->pipe);
-	close(data->pipe + 1);
-	close(data->pipe_bis[1]);
-	//printf("im locked :(\n");
+	// output to outfile on last iteration (after last cmd)
+	if (data->iter == data->nb_cmd - 1)
+	{
+		dup2(data->f2, 1);
+		close(data->pipe[data->iter][1]);
+		close(data->pipe[data->iter][0]);
+	}
+	else
+	{
+		dup2(data->pipe[data->iter + 1][1], 1); 	//out becomes write next pipe
+		close(data->pipe[data->iter + 1][1]); 		//close write next pipe
+	}
+	
 	if (execve(cmd, cmd_args, data->env) < 0)
 		ft_putendl_fd("Error : execution of cmd1 failed", 2);
 	exit(1);
@@ -62,32 +75,40 @@ void	pipex(t_data *data, char *cmd, char **cmd_args)
 	int child_in;
 	char buf[1024];
 
+	// child will exec only once per iter, the next iter should wait until pipe is closed?
+	// can i use an array of pipes, wont it block the execve cause wow some further pipes r open?
+	// if so, i need to init a pipe a time... likely in 2 places
 	// on 1st iteration, child_1 reads from infile
+
 	ft_printf("iter = %d\n", data->iter);
-	if (data->iter == 4)
+	/*if (data->iter == 4)
 	{
-		read(data->pipe_bis[0], buf, 21);
+		read(data->pipe[(data->iter * 2)], buf, 21); //read next pipe
 		buf[21] = '\0';
 		ft_printf("pipe out = %s\n'", buf);
 		exit(1);
-	}
-	if (data->iter == 1)
-		child_in = data->f1;
+	}*/
+	//if (data->iter == 1)
+	//	child_in = data->f1;
 
 	// else child_1 reads from read pipe2
-	else
+	/*else
 	{
 		dup2(data->pipe[data->iter * 2], child_in);
 		close(data->pipe[data->iter * 2]);
-	}
-
+	}*/
 	pid = fork();
 	if (pid == 0)
 		child_1(data, child_in, cmd, cmd_args);
+	close(data->pipe[data->iter][1]);
+	close(data->pipe[data->iter + 1][1]);
+
+	close(data->pipe[data->iter][0]);
+	close(data->pipe[data->iter + 1][0]);
 
 	//close parents in
-	close(data->pipe[1]);
-	data->pipe += 2;
+	//close(data->pipe[(data->iter * 2) - 1]); //close write next pipe
+	//close(data->pipe[(data->iter - 2) * 2]); //close read prev pipe
 	//close(data->pipe_bis[0]);
 	//close(child_in);
 
@@ -98,7 +119,7 @@ void	pipex(t_data *data, char *cmd, char **cmd_args)
 		child_2(data, cmd, cmd_args);*/
 
 	//close(data->pipe_bis[1]);
-	close(data->pipe[0]);
+	//close(data->pipe[0]);
 	
 	//close(data->pipe_bis[0]);
 	//close(data->f1);

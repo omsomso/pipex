@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:16:01 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/03/04 18:45:03 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:00:02 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "src/libft/libft.h"
-
-// # define WR_NEXT "(data->iter * 2) - 1)"
-// # define RD_PREV "(data->iter -2) * 2)"
 
 typedef struct s_data
 {
@@ -36,7 +33,6 @@ typedef struct s_data
 	int		f1;
 	int		f2;
 	int		**pipe;
-	int		pipe_bis[2];
 	int		nb_cmd;
 }	t_data;
 

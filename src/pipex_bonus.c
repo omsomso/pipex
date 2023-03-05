@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 07:09:03 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/03/03 16:41:55 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/05 15:12:04 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	pipex(t_data *data, char *cmd, char **cmd_args)
 	// child will exec only once per iter, the next iter should wait until pipe is closed?
 	// can i use an array of pipes, wont it block the execve cause wow some further pipes r open?
 	// if so, i need to init a pipe a time... likely in 2 places
-	// on 1st iteration, child_1 reads from infile
 
+	// on 1st iteration, child_1 reads from infile
 	ft_printf("iter = %d\n", data->iter);
 	/*if (data->iter == 4)
 	{

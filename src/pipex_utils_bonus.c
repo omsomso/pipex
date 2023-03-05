@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:15:20 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/03/03 17:59:28 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/04 18:45:10 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,10 @@ int	init_data(t_data *data, char **argv)
 		data->nb_cmd++;
 	ft_printf("nb_cmd = %d\n", data->nb_cmd);
 
-	data->pipe = malloc((sizeof(int *)) * data->nb_cmd);
-
+	data->pipe = malloc((sizeof(int **)) * data->nb_cmd);
+	i = -1;
+	while (++i < data->nb_cmd)
+		data->pipe[i] = malloc((sizeof(int)) * 2);
 	i = 0;
 
 	// init a pipe [0][1] for every command

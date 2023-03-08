@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:16:01 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/03/05 18:00:02 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:39:20 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,9 @@
 
 typedef struct s_data
 {
-	char	*cmd1;
-	char	*cmd2;
-	char	**arg1;
-	char	**arg2;
 	char	**env;
 	char	*buf;
-	int		tmp_fd;
-	int		end;
+	int		failed_cmd;
 	int		iter;
 	int		f1;
 	int		f2;
@@ -40,10 +35,13 @@ void	free_pointer_array(char **s);
 void	free_everything(t_data *data);
 char	*get_command_path(char **env, char *cmd);
 int		init_data(t_data *data, char **args);
+int		init_data_add(t_data *data, char **argv);
 int		get_path(t_data *data, char **envp);
-int		child_one(t_data *data, int *pipe);
-int		child_two(t_data *data, int *pipe);
-void	pipex(t_data *data, char *cmd, char **cmd_args);
-void	print_dbg_data(t_data *data);
+void	child(t_data *data, char *cmd, char **cmd_args);
+int		pipex(t_data *data, char **argv);
+void	close_pipes(t_data *data);
+void	free_pipes(t_data *data);
+void	free_commands(char *cmd, char **tmp);
+void	print_dbg_data(char *cmd, char **cmd_args, t_data *data);
 
 #endif

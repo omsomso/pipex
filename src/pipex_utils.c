@@ -6,7 +6,7 @@
 /*   By: kpawlows <kpawlows@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 12:15:20 by kpawlows          #+#    #+#             */
-/*   Updated: 2023/02/21 21:06:12 by kpawlows         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:55:27 by kpawlows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_pointer_array(char **s)
 	int	i;
 
 	i = -1;
-	while (s[i++] != NULL)
+	while (s[++i] != NULL)
 		free(s[i]);
 	if (s != NULL)
 		free(s);
